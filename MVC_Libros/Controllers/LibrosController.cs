@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MVC_Libros.Models;
-
-namespace MVC_Libros.Controllers
+﻿namespace MVC_Libros.Controllers
 {
     public class LibrosController : Controller
     {

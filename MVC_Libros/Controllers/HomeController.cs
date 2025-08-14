@@ -1,7 +1,3 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using MVC_Libros.Models;
-
 namespace MVC_Libros.Controllers
 {
     public class HomeController : Controller
