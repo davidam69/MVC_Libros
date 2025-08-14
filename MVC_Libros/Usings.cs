@@ -6,3 +6,8 @@ global using Microsoft.EntityFrameworkCore.SqlServer;
 global using Microsoft.EntityFrameworkCore.Design;
 global using MVC_Libros.Models;
 global using System.Reflection.Emit;
+global using System;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Rendering;
