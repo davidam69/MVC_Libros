@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<LibrosContext>(Options =>
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL")));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

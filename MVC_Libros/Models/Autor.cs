@@ -2,7 +2,8 @@
 {
     public class Autor
     {
-        public int id { get; set; }
-        public string? nombre { get; set; }
+        public int Id { get; set; }
+        [Required(ErrorMessage = "El nombre del autor es obligatorio.")]
+        public string? Nombre { get; set; }
     }
 }
