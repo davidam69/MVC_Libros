@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MVC_Libros.Models.Libro>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Catálogos de Libros";
 }
 
-<h1>Index</h1>
+<h1>Catálogos de Libros</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,44 +13,48 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
+                Portada
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnioPublicacion)
+                Título
+               @* @Html.DisplayNameFor(model => model.Titulo) *@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Autor)
+                Año
+                @* @Html.DisplayNameFor(model => model.AnioPublicacion) *@
             </th>
             <th>
-                Imagen
+                Autor
+                @* @Html.DisplayNameFor(model => model.Autor) *@
             </th>
-            <th></th>
+            
+            <th>Detalle</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnioPublicacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor.Nombre)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.UrlImagen))
-                {
-                    <img src="@item.UrlImagen" alt="Imagen de @item.Titulo" style="max-height:100px;" />
-                }
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.UrlImagen))
+                    {
+                        <img src="@item.UrlImagen" alt="Imagen de @item.Titulo" style="max-height:100px;" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnioPublicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -21,7 +21,8 @@
         {
             if (id == null)
             {
-                return NotFound();
+                ViewBag.Mensaje = "Libro no encontrado";
+                return View("Error");
             }
 
             var libro = await _context.Libros
@@ -29,7 +30,8 @@
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (libro == null)
             {
-                return NotFound();
+                ViewBag.Mensaje = "Libro no encontrado";
+                return View("Error");
             }
 
             return View(libro);
