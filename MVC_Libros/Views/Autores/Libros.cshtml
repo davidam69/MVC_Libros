@@ -1,0 +1,21 @@
+﻿@model MVC_Libros.Models.Autor
+
+<h2>Libros de @Model.Nombre</h2>
+<hr />
+
+@if (Model.Libros != null && Model.Libros.Any())
+{
+    <ul class="list-group">
+        @foreach (var libro in Model.Libros)
+        {
+            <li class="list-group-item">
+                <strong>@libro.Titulo</strong> (@libro.AnioPublicacion)
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Este autor todavía no tiene libros cargados.</p>
+}
+

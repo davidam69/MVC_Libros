@@ -11,9 +11,11 @@
         public int AnioPublicacion { get; set; }
 
         [Required(ErrorMessage = "Debes seleccionar un autor.")]
+        public int AutorId { get; set; }
         public Autor? Autor { get; set; }
         public string? UrlImagen { get; set; }
-        public int AutorId { get; set; }
+
+       
         // public string? Editorial { get; set; }
         // public string? Genero { get; set; }
         // public string? Sinopsis { get; set; }

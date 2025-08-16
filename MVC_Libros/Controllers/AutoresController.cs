@@ -143,5 +143,21 @@
         {
             return _context.Autores.Any(e => e.Id == id);
         }
+
+        // GET: Autores/Libros/5
+        public async Task<IActionResult> Libros(int id)
+        {
+            var autor = await _context.Autores
+                .Include(a => a.Libros)  // incluye los libros relacionados
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (autor == null)
+            {
+                return NotFound();
+            }
+
+            return View(autor);
+        }
+
     }
 }

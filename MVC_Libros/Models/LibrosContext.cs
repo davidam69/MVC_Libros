@@ -28,7 +28,7 @@
 
             modelBuilder.Entity<Libro>()
                 .HasOne(l => l.Autor)
-                .WithMany()
+                .WithMany(a => a.Libros)
                 .HasForeignKey(l => l.AutorId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
