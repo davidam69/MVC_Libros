@@ -6,9 +6,8 @@
 
 <h1>Catálogos de Libros</h1>
 
-<p>
-    <a asp-action="Create">Crear Libro</a>
-</p>
+<a asp-action="Create" asp-controller="Libros" class="btn btn-primary">Crear Libro</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +36,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(item.UrlImagen))
                     {
-                        <img src="@item.UrlImagen" alt="Imagen de @item.Titulo" style="max-height:100px;" />
+                        <img src="@item.UrlImagen" alt="Imagen de @item.Titulo" style="max-height:150px;" />
                     }
                 </td>
                 <td>
