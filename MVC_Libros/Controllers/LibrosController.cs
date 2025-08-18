@@ -108,7 +108,7 @@
                         throw;
                     }
                 }
-                return RedirectToAction("Details", new {id = libro.Id});
+                return RedirectToAction(nameof(Index));
             }
             ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre", libro.AutorId);
             return View(libro);
