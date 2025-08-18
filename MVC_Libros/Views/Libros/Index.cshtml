@@ -27,7 +27,7 @@
                 @* @Html.DisplayNameFor(model => model.Autor) *@
             </th>
             
-            <th>Detalle</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -52,10 +52,15 @@
                 </td>
                 <td>
                    @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>- *@
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                    <a href="@Url.Action("Details", "Libros", new { id = @item.Id })" class="btn btn-info">Ver detalles</a>
+                    @* <a asp-action="Details" asp-route-id="@item.Id">Ver Detalles</a>  *@
                    @* <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>  *@
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/estilos.css" />
+}

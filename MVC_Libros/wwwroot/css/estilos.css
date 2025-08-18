@@ -1,0 +1,12 @@
+﻿.table img {
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.img-portada {
+    max-width: 50%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+}
+

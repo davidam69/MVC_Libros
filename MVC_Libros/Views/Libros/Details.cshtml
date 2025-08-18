@@ -3,19 +3,23 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>@Model.Titulo</h1>
+@* <h1>@Model.Titulo</h1> *@
 
 <div class="row">
     <!-- Columna de la portada -->
-    <div class="col-md-4 text-center">
-        <img src="@Model.UrlImagen" alt="Portada de @Model.Titulo" style="max-width:50%; height:auto;" />
-        <p><strong>Portada</strong></p>
+    <div class="col-md-4  d-flex align-items-center">
+        <img src="@Model.UrlImagen" alt="Portada de @Model.Titulo" class="img-portada" />
     </div>
 
     <!-- Columna con los detalles -->
     <div class="col-md-8">
         <dl class="row">
+            <dt class="col-sm-3">
+                Título
+            </dt>
+            <dd class="col-sm-9 " style="font-size: 2.25rem;">
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
             <dt class="col-sm-3">
                 Año
             </dt>
@@ -37,3 +41,7 @@
     <a asp-action="Index">Volver al catálogo</a> |
     <a asp-action="Delete" asp-route-id="@Model?.Id">Eliminar</a>
 </div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/estilos.css" />
+}
