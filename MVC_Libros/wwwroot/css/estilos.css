@@ -10,3 +10,27 @@
     box-shadow: 2px 2px 5px gray;
 }
 
+.crear-autor-bg {
+    background-image: url('/images/fondo_autores.jpg'); /* ruta relativa */
+    background-size: cover; /* Escala la imagen para cubrir todo el contenedor, aunque tenga 
+    que recortarla. Mantiene las proporciones (aspect ratio) de la imagen. */
+    background-position: center; /* posiciona la imagen al centro tanto costados y altura */
+    min-height: 100vh; /* para que tome toda la altura */
+    padding: 2rem; /* Agrega espacio interno (padding) de 2 unidades relativas (rem) alrededor 
+    del contenido dentro del div. 2rem suelen ser 32px si html { font-size: 16px; } */
+}
+
+.crear-libro-bg {
+    background-image: url('/images/fondo_libros.jpeg'); /* ruta relativa */
+    background-size: cover; /* Escala la imagen para cubrir todo el contenedor, aunque tenga 
+    que recortarla. Mantiene las proporciones (aspect ratio) de la imagen. */
+    background-position: center; /* posiciona la imagen al centro tanto costados y altura */
+    min-height: 100vh; /* para que tome toda la altura */
+    padding: 2rem; /* Agrega espacio interno (padding) de 2 unidades relativas (rem) alrededor 
+    del contenido dentro del div. 2rem suelen ser 32px si html { font-size: 16px; } */
+}
+
+.text-azul-sombra {
+    color: #003366;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+}

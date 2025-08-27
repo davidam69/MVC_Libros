@@ -35,11 +35,12 @@
         </dl>
     </div>
 </div>
+<br />
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
-    <a asp-action="Index">Volver al catálogo</a> |
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Eliminar</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success">Editar</a> 
+    <a asp-action="Index" class="btn btn-primary">Volver al catálogo</a> 
+    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">Eliminar</a>
 </div>
 
 @section Styles {

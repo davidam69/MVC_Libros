@@ -4,42 +4,54 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Crear Libro</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/estilos.css" />
+}
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label">Título</label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnioPublicacion" class="control-label">Año de publicación</label>
-                <input asp-for="AnioPublicacion" class="form-control" />
-                <span asp-validation-for="AnioPublicacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UrlImagen" class="control-label"></label>
-                <input asp-for="UrlImagen" class="form-control" />
-                <span asp-validation-for="UrlImagen" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AutorId" class="control-label">Autor</label>
-                <select asp-for="AutorId" class ="form-control" asp-items="ViewBag.AutorId"></select>
-            </div>
-            <br>
-            <div class="form-group">
-                <input type="submit" value="Crear libro" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="crear-libro-bg">
+    <h2 class="text-azul-sombra mb-4">Crear libro</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label visually-hidden">Título</label>
+                    <input asp-for="Titulo" class="form-control" placeholder="Título" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="AnioPublicacion" class="control-label visually-hidden">Año de publicación</label>
+                    <input asp-for="AnioPublicacion" class="form-control" placeholder="Año de publicación" />
+                    <span asp-validation-for="AnioPublicacion" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="UrlImagen" class="control-label visually-hidden"></label>
+                    <input asp-for="UrlImagen" class="form-control" placeholder="UrlImagen" />
+                    <span asp-validation-for="UrlImagen" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="AutorId" class="control-label visually-hidden">Autor</label>
+
+                    <select asp-for="AutorId" class="form-control" asp-items="ViewBag.AutorId">
+                        <option value="" selected disabled>Autor</option>
+                    </select>
+
+                    <span asp-validation-for="AutorId" class="text-danger"></span>
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <input type="submit" value="Crear libro" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Volver al Catálogo</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Volver al Catálogo</a>
 </div>
 
 @section Scripts {
