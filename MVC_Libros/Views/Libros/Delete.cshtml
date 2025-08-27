@@ -8,37 +8,41 @@
 
 <h3 style="color: red;">¿Está seguro que quiere eliminar este Libro?</h3>
 <div>
+    <h4>Libro</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
+            Título
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Titulo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnioPublicacion)
+            Año de Publicación
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AnioPublicacion)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autor)
+            Autor
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Autor.Nombre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UrlImagen)
+            Portada
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UrlImagen)
+            @if (!string.IsNullOrEmpty(@Model.UrlImagen))
+            {
+                <img src="@Model.UrlImagen" alt="Imagen de @Model.Titulo" style="max-height:150px;" />
+            }
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar Libro" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver al catálogo</a>
+        <input type="submit" value="Eliminar Libro" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-secondary">Volver al catálogo</a>
     </form>
 </div>
