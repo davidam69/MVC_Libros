@@ -24,6 +24,7 @@
             }
 
             var autor = await _context.Autores
+                .Include(a => a.Libros)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (autor == null)
             {

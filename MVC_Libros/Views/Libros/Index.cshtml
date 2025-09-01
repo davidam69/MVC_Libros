@@ -6,7 +6,9 @@
 
 <h1>Catálogos de Libros</h1>
 
-<a asp-action="Create" asp-controller="Libros" class="btn btn-primary">Crear Libro</a>
+<a asp-action="Create" asp-controller="Libros" class="btn btn-primary">
+    <i class="bi bi-plus-circle"></i>Crear Libro
+</a>
 
 <table class="table">
     <thead>
@@ -51,10 +53,9 @@
                     </a>
                 </td>
                 <td>
-                   @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>- *@
-                    <a href="@Url.Action("Details", "Libros", new { id = @item.Id })" class="btn btn-info">Ver detalles</a>
-                    @* <a asp-action="Details" asp-route-id="@item.Id">Ver Detalles</a>  *@
-                   @* <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>  *@
+                    <a href="@Url.Action("Details", "Libros", new { id = item.Id })" class="btn btn-info">
+                        <i class="bi bi-eye"></i> Ver detalles
+                    </a>
                 </td>
             </tr>
         }

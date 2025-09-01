@@ -25,6 +25,25 @@
         </dd>
     </dl>
 </div>
+
+@if (Model.Libros != null && Model.Libros.Any())
+{
+    <ul class="list-group">
+        @foreach (var libro in Model.Libros)
+        {
+            <li class="list-group-item">
+                <strong>@libro.Titulo</strong> (@libro.AnioPublicacion)
+                <a asp-action="Details" asp-controller="Libros" asp-route-id="@libro.Id" class="btn btn-primary btn-sm">
+                    <i class="bi bi-eye"></i> Ver
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Este autor todavía no tiene libros cargados.</p>
+}
 @* <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Editar</a> 
     <a asp-action="Index" class="btn btn-info">volver al listado de autores</a>

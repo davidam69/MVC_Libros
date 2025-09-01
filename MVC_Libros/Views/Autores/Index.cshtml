@@ -6,7 +6,9 @@
 
 <h1>Autores</h1>
 
-<a asp-action="Create" asp-controller="Autores" class="btn btn-primary">Crear nuevo autor</a>
+<a asp-action="Create" asp-controller="Autores" class="btn btn-primary">
+    <i class="bi bi-plus-circle"></i> Crear nuevo autor
+</a>
 
 <table class="table">
     <thead>
@@ -25,12 +27,21 @@
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Editar</a> 
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a> 
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                        <i class="bi bi-eye"></i> Detalles
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-action="Index" asp-controller="Libros" class="btn btn-secondary">Volver al catálogo</a>
+<a asp-action="Index" asp-controller="Libros" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Volver al catálogo
+</a>
+
