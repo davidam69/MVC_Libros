@@ -50,7 +50,10 @@
             {
                 _context.Add(autor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["Mensaje"] = "Autor agregado correctamente";
+
+                return RedirectToAction(nameof(Details), new { id = autor.Id });
             }
             return View(autor);
         }
