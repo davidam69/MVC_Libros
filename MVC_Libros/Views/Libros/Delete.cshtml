@@ -6,7 +6,6 @@
 
 <h1>Eliminar Libro</h1>
 
-<h3 style="color: red;">¿Está seguro que quiere eliminar este Libro?</h3>
 <div>
     <h4>Libro</h4>
     <hr />
@@ -42,7 +41,16 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar Libro" class="btn btn-danger" /> 
-        <a asp-action="Index" class="btn btn-secondary">Volver al catálogo</a>
+
+        <!-- Botón Eliminar con ícono -->
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('¿Estás seguro que quieres eliminar este libro?');">
+            <i class="bi bi-trash"></i> Eliminar Libro
+        </button>
+
+        <!-- Botón Volver con ícono -->
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver al catálogo
+        </a>
     </form>
 </div>

@@ -55,7 +55,10 @@
             {
                 _context.Add(libro);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["Mensaje"] = "Libro agregado correctamente";
+
+                return RedirectToAction(nameof(Details), new { id = libro.Id });
             }
             ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre", libro.AutorId);
             return View(libro);
@@ -152,5 +155,28 @@
         {
             return _context.Libros.Any(e => e.Id == id);
         }
+
+        [HttpGet]
+        public IActionResult Tema(string color = "light")
+        {
+            // Mapa a clases Bootstrap nativas (sin depender de site.css)
+            var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+                { "light", "bg-light" },
+                { "dark",  "bg-dark text-white" },
+                { "orange", "bg-warning text-dark" },
+                { "green", "bg-success text-white" }
+    };
+
+            if (!map.ContainsKey(color)) color = "light";
+
+            HttpContext.Session.SetString("BodyClass", map[color]);
+
+            // Volver a la página previa si existe; sino al Index del controlador actual
+            var back = Request.Headers["Referer"].ToString();
+            return !string.IsNullOrEmpty(back) ? Redirect(back) : RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
