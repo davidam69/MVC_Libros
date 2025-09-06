@@ -43,7 +43,10 @@
         // GET: Libros/Create
         public IActionResult Create()
         {
-            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre");
+            ViewData["AutorId"] = new SelectList(_context.Autores
+                .AsNoTracking()
+                .OrderBy(a => a.Nombre),
+                "Id", "Nombre");
             return View();
         }
 
@@ -80,7 +83,10 @@
 
                 return RedirectToAction(nameof(Details), new { id = libro.Id });
             }
-            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre", libro.AutorId);
+            ViewData["AutorId"] = new SelectList(_context.Autores
+                .AsNoTracking()
+                .OrderBy(a => a.Nombre),
+                "Id", "Nombre", libro.AutorId);
             return View(libro);
         }
 
@@ -97,7 +103,9 @@
             {
                 return NotFound();
             }
-            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre", libro.AutorId);
+            ViewData["AutorId"] = new SelectList(_context.Autores
+                .AsNoTracking().OrderBy(a => a.Nombre),
+                "Id", "Nombre", libro.AutorId);
             return View(libro);
         }
 
