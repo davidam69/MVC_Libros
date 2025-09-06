@@ -4,6 +4,14 @@
     ViewData["Title"] = "Catálogos de Libros";
 }
 
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <h1>Catálogos de Libros</h1>
 
 <a asp-action="Create" asp-controller="Libros" class="btn btn-primary">
