@@ -9,13 +9,13 @@
             _context = context;
         }
 
-        // GET: Autores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Autores.ToListAsync());
+            return View(await _context.Autores
+                .OrderBy(a => a.Nombre)// lo ordena alfabeticamente
+                .ToListAsync());
         }
 
-        // GET: Autores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,19 +34,32 @@
             return View(autor);
         }
 
-        // GET: Autores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Autores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre")] Autor autor)
         {
+            if (!string.IsNullOrWhiteSpace(autor.Nombre))
+            {
+                var nombre = autor.Nombre.Trim();
+
+                bool existe = await _context.Autores
+                    .AnyAsync(a => a.Nombre.ToLower() == nombre.ToLower());
+
+                if (existe)
+                {
+                    ModelState.AddModelError("Nombre", "Ya existe un autor con ese nombre.");
+                }
+                else
+                {
+                    autor.Nombre = nombre; // normalizar lo que guardás
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(autor);
@@ -59,7 +72,6 @@
             return View(autor);
         }
 
-        // GET: Autores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,9 +87,6 @@
             return View(autor);
         }
 
-        // POST: Autores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] Autor autor)
@@ -93,6 +102,8 @@
                 {
                     _context.Update(autor);
                     await _context.SaveChangesAsync();
+
+                    TempData["Mensaje"] = "Autor editado correctamente";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,7 +121,6 @@
             return View(autor);
         }
 
-        // GET: Autores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,7 +138,6 @@
             return View(autor);
         }
 
-        // POST: Autores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -137,9 +146,11 @@
             if (autor != null)
             {
                 _context.Autores.Remove(autor);
+                await _context.SaveChangesAsync();
+
+                TempData["Mensaje"] = "Autor eliminado correctamente";
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -148,7 +159,6 @@
             return _context.Autores.Any(e => e.Id == id);
         }
 
-        // GET: Autores/Libros/5
         public async Task<IActionResult> Libros(int id)
         {
             var autor = await _context.Autores
