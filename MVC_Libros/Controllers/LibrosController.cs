@@ -12,7 +12,10 @@
         // GET: Libros
         public async Task<IActionResult> Index()
         {
-            var librosContext = _context.Libros.Include(l => l.Autor);
+            var librosContext = _context.Libros
+                .Include(l => l.Autor)
+                .OrderBy(l => l.Autor.Nombre)      // ordena por Autor
+                .ThenBy(l => l.Titulo);
             return View(await librosContext.ToListAsync());
         }
 
@@ -51,6 +54,23 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Titulo,AnioPublicacion,UrlImagen,AutorId")] Libro libro)
         {
+            // Normalizamos entrada
+            var titulo = (libro.Titulo ?? "").Trim();
+
+            // ¿Ya existe un libro con el mismo Título y el mismo Autor?
+            bool duplicado = await _context.Libros
+                .AnyAsync(l => l.AutorId == libro.AutorId &&
+                               l.Titulo.ToLower() == titulo.ToLower());
+
+            if (duplicado)
+            {
+                ModelState.AddModelError(string.Empty, "Ya existe un libro con ese título para ese autor.");
+            }
+            else
+            {
+                libro.Titulo = titulo; // guardo normalizado
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(libro);
@@ -99,6 +119,8 @@
                 {
                     _context.Update(libro);
                     await _context.SaveChangesAsync();
+
+                    TempData["Mensaje"] = "Libro modificado correctamente";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -145,9 +167,11 @@
             if (libro != null)
             {
                 _context.Libros.Remove(libro);
+                await _context.SaveChangesAsync();
+
+                TempData["Mensaje"] = "Libro eliminado correctamente";
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
